@@ -5,13 +5,16 @@
 package maceraoyunu;
 
 /**
- *aaa
+ *
  * @author yusuf
  */
-public class Archer extends GameCharacter{
-
-    public Archer() {
-        super(2,"Okçu",7,18,20);
+public abstract class NormalLoc extends Location {
+    public NormalLoc(Player player,String name){
+        super(player,name);
+    }
+    @Override
+    public boolean onLocation() {
+        return true;
     }
     
 }

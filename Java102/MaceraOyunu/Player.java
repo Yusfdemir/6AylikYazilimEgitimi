@@ -17,14 +17,15 @@ public class Player {
     private String name;
     private String charName;
     private Scanner input=new Scanner(System.in);
+    private Inventory inventory;
+    
     
     public Player(String name){
         this.name=name;
+        this.inventory=new Inventory();
     }
     
     public void selectChar(){
-
-        
         GameCharacter[] charList={new Samurai(),new Archer(),new Knight()};
         System.out.println("-------------");
         for(GameCharacter gameChar:charList){
@@ -57,15 +58,26 @@ public class Player {
                 ", Para: "+this.getMoney());
     }
     
+    public void selectLoc(){
+       
+    
+    }
+    
     public void initPlayer(GameCharacter gameChar){
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
         this.setMoney(gameChar.getMoney());
         this.setCharName(gameChar.getName());
     }
-    
+    public void printInfo(){
+        System.out.println("Silahınız: "+this.getInventory().getWeapon().getName()+
+                ", Hasar: "+this.getDamage()+
+                ", Sağlık: "+this.getHealth()+
+                ", Para: "+this.getMoney());
+
+    }
     public int getDamage() {
-        return damage;
+        return damage+this.getInventory().getWeapon().getDamage();
     }
 
     public void setDamage(int damage) {
@@ -102,6 +114,14 @@ public class Player {
 
     public void setCharName(String charName) {
         this.charName = charName;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
     
 }
