@@ -20,6 +20,7 @@ public class Game {
         Player player=new Player(playerName);
         System.out.print("Sayın "+player.getName()+ " bu karanlık ve sisli adaya hoşgeldiniz !! Burada yaşananların hepsi gerçek");
         System.out.println("Lütfen bir karakter seçiniz !");
+        System.out.println("----------------------------------------------");
         player.selectChar();
        
         Location location=null;
