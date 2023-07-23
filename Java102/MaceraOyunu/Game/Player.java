@@ -19,11 +19,16 @@ public class Player {
     private String charName;
     private Scanner input=new Scanner(System.in);
     private Inventory inventory;
-    
+    private boolean haveWater;
+    private boolean haveFirewood;
+    private boolean haveFood;
     
     public Player(String name){
         this.name=name;
         this.inventory=new Inventory();
+        this.haveFirewood=false;
+        this.haveFood=false;
+        this.haveWater=false;
     }
     
     public void selectChar(){
@@ -139,5 +144,27 @@ public class Player {
     public void setOrjinalHealth(int orjinalHealth) {
         this.orjinalHealth = orjinalHealth;
     }
-    
+     public boolean isHaveWater() {
+        return haveWater;
+    }
+
+    public void setHaveWater(boolean haveWater) {
+        this.haveWater = haveWater;
+    }
+
+    public boolean isHaveFirewood() {
+        return haveFirewood;
+    }
+
+    public void setHaveFirewood(boolean haveFirewood) {
+        this.haveFirewood = haveFirewood;
+    }
+
+    public boolean isHaveFood() {
+        return haveFood;
+    }
+
+    public void setHaveFood(boolean haveFood) {
+        this.haveFood = haveFood;
+    }
 }

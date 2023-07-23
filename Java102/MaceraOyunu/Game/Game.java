@@ -31,9 +31,22 @@ public class Game {
             System.out.println();
             System.out.println("1- Güvenli Ev");
             System.out.println("2- Eşya dükkanı");
-            System.out.println("3- Mağaraya git, Burada karşına Zombi çıkabilir -> Ödül= <Yemek>");
-            System.out.println("4- Ormana git, Burada karşına Vampir çıkabilir -> Ödül= <Odun>");
-            System.out.println("5- Nehire git, Burada karşına Ayı çıkabilir -> Ödül= <Su>");
+            if(!player.isHaveFood()){
+                System.out.println("3- Mağaraya git, Burada karşına Zombi çıkabilir -> Ödül= <Yemek>");
+            }else{
+                System.out.println("3- Mağara bölümünü tamamladın ondan dolayı seçemezsin");
+            }
+            if(!player.isHaveFirewood()){
+                System.out.println("4- Ormana git, Burada karşına Vampir çıkabilir -> Ödül= <Odun>");
+            }else{
+                System.out.println("4-Orman bölümünü tamamladın ondan dolayı seçemezsin");
+            }
+            if(!player.isHaveWater()){
+                System.out.println("5- Nehire git, Burada karşına Ayı çıkabilir -> Ödül= <Su>");
+            }else{
+                System.out.println("5- Nehir bölümünü tamamladın ondan dolayı seçemezsin");
+            }
+            System.out.println("6- Madene git , Burada kaşına yılan çıkabilir -> Ödül= <Para,silah veya zırh>");
             System.out.println("0- Oyundan Çık");
             System.out.print("Lütfen gitmek istediğiniz bölgeyi seçiniz: ");
             int selectLoc=input.nextInt();
@@ -48,13 +61,31 @@ public class Game {
                     location=new ToolStore(player);
                     break;
                 case 3:
-                    location=new Cave(player);
+                    if(!player.isHaveFood()){
+                        location=new Cave(player);
+                    }else{
+                        System.out.println("Bu bölgeyi daha öne tamizlediğiniz için güvenli eve yönlendirildiniz --> Lütfen başka bir bölge girin");
+                        location=new SafeHouse(player);
+                    }
                     break;
                 case 4:
-                    location=new Forest(player);
+                    if(!player.isHaveFirewood()){
+                        location=new Forest(player);
+                    }else{
+                        System.out.println("Güvenli Eve Yönlendirildiniz Lütfen başka bir bölge girin");
+                        location=new SafeHouse(player);
+                    }
                     break;
                 case 5:
-                    location=new River(player);
+                    if(!player.isHaveWater()){
+                        location=new River(player);
+                    }else{
+                        System.out.println("Güvenli Eve Yönlendirildiniz Lütfen başka bir bölge girin");
+                        location=new SafeHouse(player);
+                    }
+                    break;
+                case 6:
+                    location=new Mine(player);
                     break;
                 default:
                     System.out.println("Lütfen Geçerli bir bölge girin");
@@ -66,7 +97,7 @@ public class Game {
                 break;
             }
             if(!location.onLocation()){
-                System.out.println("Öldünüz ---> Game Over");
+               // System.out.println("Öldünüz ---> Game Over");
                 break;
             }
         }
