@@ -25,4 +25,27 @@ router.post("/adminLogin", (req, res) => {
   });
 });
 
+router.post("/add_car",(req,res)=>{
+  const sql=`INSERT INTO cars (name,brand,model,plaka,year) VALUES(?)`;
+  const values=[
+    req.body.name,
+    req.body.brand,
+    req.body.model,
+    req.body.plaka,
+    req.body.year
+  ]
+  con.query(sql,[values],(err,result)=>{
+      if(err) return res.json({Status:false,Error:"Query Error"})
+    return res.json({Status:true})
+  })
+})
+
+router.get("/cars",(req,res)=>{
+    const sql="SELECT * FROM cars";
+    con.query(sql,(err,result)=>{
+      if(err) res.json({Status:false,Error:"Query Error"})
+      return res.json({Status:true,Result:result})
+    })
+})
+
 export { router as adminRouter };
