@@ -1,8 +1,21 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet,useNavigate } from 'react-router-dom'
 import "bootstrap-icons/font/bootstrap-icons.css";
+import axios from 'axios';
 
 const Dashboard = () => {
+  const navigate=useNavigate();
+  axios.defaults.withCredentials=true
+  const handleLogout=()=>{
+    axios.get("http://localhost:3000/auth/logout")
+      .then(result=>{
+        if(result.data.Status){
+          navigate("/adminlogin")
+        }
+        navigate("/adminlogin")
+      })
+  }
+
   return (
     <div  className="container-fluid">
       <div className="row flex-nowrap">
@@ -18,19 +31,19 @@ const Dashboard = () => {
                   <span className="ms-2 d-none d-sm-inline">Dashboard</span>
                 </Link>
               </li>
-              <li className="w-100">
+              {/* <li className="w-100">
                 <Link to="/dashboard/cars" className="nav-link text-white px-0 align-middle">
                   <i className="fs-4  bi-pencil-square ms-2"></i>
                   <span className="ms-2 d-none d-sm-inline">Cars</span>
                 </Link>
-              </li>
+              </li> */}
               <li className="w-100">
                 <Link to="/dashboard/change-password" className="nav-link text-white px-0 align-middle">
                   <i className="fs-4  bi-pencil-square ms-2"></i>
                   <span className="ms-2 d-none d-sm-inline">Change Password</span>
                 </Link>
               </li>
-              <li className="w-100">
+              <li className="w-100" onClick={handleLogout}>
                 <Link to="/logout" className="nav-link text-white px-0 align-middle">
                   <i className="fs-4 bi-power ms-2"></i>
                   <span className="ms-2 d-none d-sm-inline">Logout</span>

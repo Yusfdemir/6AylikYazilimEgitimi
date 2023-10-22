@@ -18,7 +18,7 @@ const AddCars = () => {
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
     <div className="p-3 rounded w-75">
-      <h3 className="text-center">Add Employee</h3>
+      <h3 className="text-center">Add Car</h3>
       <form className="row g-1" onSubmit={handleSubmit}>
         <div className="col-12">
           <label htmlFor="inputName" className="form-label">

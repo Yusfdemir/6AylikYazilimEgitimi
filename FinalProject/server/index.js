@@ -1,14 +1,16 @@
 import  express  from "express";
 import cors from "cors"
 import { adminRouter } from "./routes/adminRoutes.js";
+import cookieParser from "cookie-parser";
 
 const app=express();
 app.use(cors({
-    origin:["http://localhost:5173"],
-    methods:['GET','POST','PUT'],
+    origin:["http://127.0.0.1:5173"],
+    methods:['GET','POST','PUT','DELETE'],
     credentials:true
 }))
 app.use(express.json())
+app.use(cookieParser())
 app.use('/auth',adminRouter)
 //app.use(express.static('Public'))
 

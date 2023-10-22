@@ -14,10 +14,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/adminLogin' element={<Login/>}/>
+        <Route path='/adminlogin' element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}>
           <Route path='' element={<Home/>}/>
-          <Route path='/dashboard/cars' element={<Cars/>}/>
+          {/* <Route path='/dashboard/cars' element={<Cars/>}/> */}
           <Route path='/dashboard/change-password' element={<ChangePassword/>}/>
           <Route path='/dashboard/add_car' element={<AddCars/>}/>
           <Route path='/dashboard/edit_car/:id' element={<EditCar/>}/>

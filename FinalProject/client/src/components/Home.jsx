@@ -4,8 +4,7 @@ import Cars from './Cars'
 const Home = () => {
   return (
     <div>
-        Home
-        {/* <Cars/> */}
+        <Cars/>
     </div>
   )
 }

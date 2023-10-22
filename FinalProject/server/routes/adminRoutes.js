@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post("/adminLogin", (req, res) => {
+router.post("/adminlogin", (req, res) => {
   const sql = "SELECT * from admin Where email = ? and password = ?";
   con.query(sql, [req.body.email, req.body.password], (err, result) => {
     if (err) return res.json({ loginStatus: false, Error: "Query error" });
@@ -46,6 +46,40 @@ router.get("/cars",(req,res)=>{
       if(err) res.json({Status:false,Error:"Query Error"})
       return res.json({Status:true,Result:result})
     })
+})
+
+router.get("/car/:id",(req,res)=>{
+  const id=req.params.id;
+  const sql="SELECT * FROM cars WHERE id = ?";
+    con.query(sql,[id],(err,result)=>{
+      if(err) res.json({Status:false,Error:"Query Error"})
+      return res.json({Status:true,Result:result})
+    })
+})
+
+router.put('/edit_car/:id',(req,res)=>{
+  const id=req.params.id;
+  const sql=`UPDATE cars set name= ?,brand= ?,model= ?,plaka= ?,year= ? Where id = ?`
+  const values=[
+    req.body.name,
+    req.body.brand,
+    req.body.model,
+    req.body.plaka,
+    req.body.year
+  ]
+  con.query(sql,[...values,id],(err,result)=>{
+    if(err) res.json({Status:false,Error:"Query Error"})
+    return res.json({Status:true,Result:result})
+  })
+})
+
+router.delete("/delete_car/:id",(req,res)=>{
+  const id=req.params.id;
+  const sql="delete from cars where id = ?"
+  con.query(sql,[id],(err,result)=>{
+    if(err) res.json({Status:false,Error:"Query Error"})
+    return res.json({Status:true,Result:result})
+  })
 })
 
 export { router as adminRouter };
