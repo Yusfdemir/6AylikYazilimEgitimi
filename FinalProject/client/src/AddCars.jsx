@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 const AddCars = () => {
+  const navigate=useNavigate()
     const [car,setCar]=useState({
         name:"",
         brand:"",
@@ -12,7 +14,10 @@ const AddCars = () => {
     const handleSubmit=(e)=>{
         e.preventDefault()
         axios.post("http://localhost:3000/auth/add_car",car)
-        .then(result=>console.log(result.data))
+        .then(result=>{
+          console.log(result.data)
+          navigate("/dashboard")
+        })
         .catch(err=>console.log(err))
     }
   return (

@@ -3,10 +3,10 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Home from './components/Home'
-import Cars from './components/Cars'
 import ChangePassword from './components/ChangePassword'
 import AddCars from './AddCars'
 import EditCar from './components/EditCar'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   
@@ -14,8 +14,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/adminlogin' element={<Login/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}>
           <Route path='' element={<Home/>}/>
           {/* <Route path='/dashboard/cars' element={<Cars/>}/> */}
           <Route path='/dashboard/change-password' element={<ChangePassword/>}/>

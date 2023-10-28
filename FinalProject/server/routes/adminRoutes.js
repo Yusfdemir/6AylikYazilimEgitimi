@@ -11,7 +11,7 @@ router.post("/adminlogin", (req, res) => {
     if (result.length > 0) {
       const email = result[0].email;
       const token = jwt.sign(
-        { role: "admin", email: email },
+        { role: "admin", email: email,id:result[0].id },
         "jwt_secret_key",
         { expiresIn: "1d" },
       );
@@ -82,4 +82,8 @@ router.delete("/delete_car/:id",(req,res)=>{
   })
 })
 
+router.get("/logout",(req,res)=>{
+  res.clearCookie('token')
+  return res.json({Status:true})
+})
 export { router as adminRouter };
