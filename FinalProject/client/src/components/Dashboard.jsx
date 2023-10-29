@@ -32,12 +32,6 @@ const Dashboard = () => {
                   <span className="ms-2 d-none d-sm-inline">Dashboard</span>
                 </Link>
               </li>
-              {/* <li className="w-100">
-                <Link to="/dashboard/cars" className="nav-link text-white px-0 align-middle">
-                  <i className="fs-4  bi-pencil-square ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Cars</span>
-                </Link>
-              </li> */}
               <li className="w-100">
                 <Link to="/dashboard/change-password" className="nav-link text-white px-0 align-middle">
                   <i className="fs-4  bi-pencil-square ms-2"></i>

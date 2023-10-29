@@ -25,6 +25,15 @@ router.post("/adminlogin", (req, res) => {
   });
 });
 
+router.get("/admin/:id",(req,res)=>{
+  const id=req.params.id
+  const sql="SELECT * FROM admin WHERE id = ?";
+    con.query(sql,[id],(err,result)=>{
+      if(err) res.json({Status:false,Error:"Query Error"})
+      return res.json({Status:true,Result:result})
+    })
+})
+
 router.post("/add_car",(req,res)=>{
   const sql=`INSERT INTO cars (name,brand,model,plaka,year) VALUES(?)`;
   const values=[
@@ -37,6 +46,20 @@ router.post("/add_car",(req,res)=>{
   con.query(sql,[values],(err,result)=>{
       if(err) return res.json({Status:false,Error:"Query Error"})
     return res.json({Status:true})
+  })
+})
+
+router.put('/change-password',(req,res)=>{
+  const id=1
+  const sql=`UPDATE admin set email= ?,password= ? Where id= ?`
+  const values=[
+    req.body.email,
+    req.body.password,
+    id
+  ]
+  con.query(sql,values,(err,result)=>{
+    if(err) res.json({Status:false,Error:"Query Error"})
+    return res.json({Status:true,Result:result})
   })
 })
 

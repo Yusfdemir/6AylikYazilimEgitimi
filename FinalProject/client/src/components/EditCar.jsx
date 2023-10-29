@@ -30,6 +30,7 @@ const EditCar = () => {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
+        console.log(car)
         axios.put(`http://localhost:3000/auth/edit_car/${id}`,car)
         .then(result=>{
             if(result.data.Status){
